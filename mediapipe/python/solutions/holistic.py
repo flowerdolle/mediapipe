@@ -44,7 +44,7 @@ from mediapipe.python.solutions.pose import PoseLandmark
 from mediapipe.python.solutions.pose import UPPER_BODY_POSE_CONNECTIONS
 # pylint: enable=unused-import
 
-BINARYPB_FILE_PATH = 'mediapipe/modules/holistic_landmark/holistic_landmark_cpu.binarypb'
+BINARYPB_FILE_PATH = 'mediapipe/modules/holistic_landmark/holistic_landmark_gpu.binarypb'
 
 
 class Holistic(SolutionBase):
@@ -90,14 +90,14 @@ class Holistic(SolutionBase):
             'smooth_landmarks': smooth_landmarks and not static_image_mode,
         },
         calculator_params={
-            'poselandmarkcpu__ConstantSidePacketCalculator.packet': [
+            'poselandmarkgpu__ConstantSidePacketCalculator.packet': [
                 constant_side_packet_calculator_pb2
                 .ConstantSidePacketCalculatorOptions.ConstantSidePacket(
                     bool_value=not static_image_mode)
             ],
-            'poselandmarkcpu__posedetectioncpu__TensorsToDetectionsCalculator.min_score_thresh':
+            'poselandmarkgpu__posedetectioncpu__TensorsToDetectionsCalculator.min_score_thresh':
                 min_detection_confidence,
-            'poselandmarkcpu__poselandmarkbyroicpu__ThresholdingCalculator.threshold':
+            'poselandmarkgpu__poselandmarkbyroicpu__ThresholdingCalculator.threshold':
                 min_tracking_confidence,
         },
         outputs=[

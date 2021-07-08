@@ -35,8 +35,8 @@ http_archive(
 
 http_archive(
     name = "rules_cc",
-    strip_prefix = "rules_cc-master",
-    urls = ["https://github.com/bazelbuild/rules_cc/archive/main.zip"],
+    strip_prefix = "rules_cc-c612c9581b9e740a49ed4c006edb93912c8ab205",
+    urls = ["https://github.com/bazelbuild/rules_cc/archive/rules_cc-c612c9581b9e740a49ed4c006edb93912c8ab205.zip"],
 )
 
 http_archive(

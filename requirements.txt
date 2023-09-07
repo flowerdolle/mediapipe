@@ -3,6 +3,6 @@ attrs>=19.1.0
 dataclasses
 numpy
 opencv-contrib-python
-protobuf>=3.11.4
+protobuf>=3.20.1
 six
 wheel

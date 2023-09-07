@@ -13,29 +13,30 @@ exports_files(["LICENSE"])
 # If you install OpenCV separately, please modify the build rule accordingly.
 cc_library(
     name = "opencv",
+    srcs = glob(
+        [
+            "lib/x86_64-linux-gnu/libopencv_core.so",
+            "lib/x86_64-linux-gnu/libopencv_calib3d.so",
+            "lib/x86_64-linux-gnu/libopencv_features2d.so",
+            "lib/x86_64-linux-gnu/libopencv_highgui.so",
+            "lib/x86_64-linux-gnu/libopencv_imgcodecs.so",
+            "lib/x86_64-linux-gnu/libopencv_imgproc.so",
+            "lib/x86_64-linux-gnu/libopencv_video.so",
+            "lib/x86_64-linux-gnu/libopencv_videoio.so",
+        ],
+    ),
     hdrs = glob([
+        # For OpenCV 3.x
+        "include/opencv2/**/*.h*",
         # For OpenCV 4.x
-        #"include/aarch64-linux-gnu/opencv4/opencv2/cvconfig.h",
-        #"include/arm-linux-gnueabihf/opencv4/opencv2/cvconfig.h",
-        #"include/x86_64-linux-gnu/opencv4/opencv2/cvconfig.h",
-        "include/opencv4/opencv2/**/*.h*",
+        # "include/opencv4/opencv2/**/*.h*",
     ]),
     includes = [
+        # For OpenCV 3.x
+        "include/",
         # For OpenCV 4.x
-        #"include/aarch64-linux-gnu/opencv4/",
-        #"include/arm-linux-gnueabihf/opencv4/",
-        #"include/x86_64-linux-gnu/opencv4/",
-        "include/opencv4/",
+        # "include/opencv4/",
     ],
-    linkopts = [
-        "-l:libopencv_core.so",
-        "-l:libopencv_calib3d.so",
-        "-l:libopencv_features2d.so",
-        "-l:libopencv_highgui.so",
-        "-l:libopencv_imgcodecs.so",
-        "-l:libopencv_imgproc.so",
-        "-l:libopencv_video.so",
-        "-l:libopencv_videoio.so",
-    ],
+    linkstatic = 1,
     visibility = ["//visibility:public"],
 )

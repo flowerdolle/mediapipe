@@ -18,10 +18,18 @@ exports_files(["LICENSE"])
 
 cc_library(
     name = "libffmpeg",
+    srcs = glob(
+        [
+            "lib/x86_64-linux-gnu/libav*.so",
+        ],
+    ),
+    hdrs = glob(["include/x86_64-linux-gnu/libav*/*.h"]),
+    includes = ["include"],
     linkopts = [
-        "-l:libavcodec.so",
-        "-l:libavformat.so",
-        "-l:libavutil.so",
+        "-lavcodec",
+        "-lavformat",
+        "-lavutil",
     ],
+    linkstatic = 1,
     visibility = ["//visibility:public"],
 )
